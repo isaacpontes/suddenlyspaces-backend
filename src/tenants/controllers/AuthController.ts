@@ -17,7 +17,7 @@ const LoginSchema = z.object({
 });
 
 export const AuthController = {
-  // POST /landlords/register
+  // POST /tenants/register
   async register(req: Request, res: Response) {
     const parsed = RegisterSchema.safeParse(req.body);
     if (!parsed.success) {
@@ -29,7 +29,7 @@ export const AuthController = {
     res.status(201).json(result);
   },
 
-  // POST /landlords/login
+  // POST /tenants/login
   async login(req: Request, res: Response) {
     const parsed = LoginSchema.safeParse(req.body);
     if (!parsed.success) {
@@ -41,7 +41,7 @@ export const AuthController = {
     res.status(200).json(result);
   },
 
-  // GET /landlords/me
+  // GET /tenants/me
   async me(req: Request, res: Response) {
     const header = req.header('Authorization');
     const token = header?.startsWith('Bearer ') ? header.slice('Bearer '.length) : undefined;
