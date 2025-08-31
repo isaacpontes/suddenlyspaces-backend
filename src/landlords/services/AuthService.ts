@@ -8,6 +8,7 @@ function toPublicLandlord(landlord: any) {
     id: landlord.id?.toString?.() ?? landlord._id?.toString?.(),
     name: landlord.name,
     email: landlord.email,
+    role: 'landlord'
   } as const;
 }
 
