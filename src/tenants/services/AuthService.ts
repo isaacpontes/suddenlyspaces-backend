@@ -8,6 +8,7 @@ function toPublicTenant(tenant: any) {
     id: tenant.id?.toString?.() ?? tenant._id?.toString?.(),
     name: tenant.name,
     email: tenant.email,
+    interests: tenant.interests,
     role: 'tenant'
   } as const;
 }
