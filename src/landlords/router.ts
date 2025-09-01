@@ -1,7 +1,8 @@
-import { Router } from "express";
-import { AuthController } from "./controllers/AuthController";
-import { ensureAuth } from "./middlewares/auth";
-import { PropertyController } from "./controllers/PropertiesController";
+import { Router } from 'express';
+import { AuthController } from './controllers/AuthController';
+import { ensureAuth } from './middlewares/auth';
+import { PropertyController } from './controllers/PropertiesController';
+import { TenantScoreController } from './controllers/TenantScoreController';
 
 export const router = Router();
 
@@ -11,8 +12,11 @@ router.post('/register', AuthController.register);
 router.get('/me', ensureAuth, AuthController.me);
 
 // Properties Management Routes
-router.post("/properties", ensureAuth, PropertyController.create);
-router.get("/properties", ensureAuth, PropertyController.list);
-router.get("/properties/:id", ensureAuth, PropertyController.getById);
-router.patch("/properties/:id", ensureAuth, PropertyController.update);
-router.delete("/properties/:id", ensureAuth, PropertyController.remove);
+router.post('/properties', ensureAuth, PropertyController.create);
+router.get('/properties', ensureAuth, PropertyController.list);
+router.get('/properties/:id', ensureAuth, PropertyController.getById);
+router.patch('/properties/:id', ensureAuth, PropertyController.update);
+router.delete('/properties/:id', ensureAuth, PropertyController.remove);
+
+// "Calculate" Tenant Risk Score
+router.get('/tenants/:id/score', TenantScoreController.riskScore);
