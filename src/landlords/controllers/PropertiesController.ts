@@ -21,10 +21,10 @@ const ListPropertiesSchema = z.object({
   title: z.string().optional(),
   location: z.string().optional(),
   leaseType: z.enum(["coworking", "residential", "short-term"]).optional(),
-  priceMin: z.number().optional(),
-  priceMax: z.number().optional(),
-  page: z.number().min(1).optional(),
-  limit: z.number().min(1).optional(),
+  priceMin: z.string().optional(),
+  priceMax: z.string().optional(),
+  page: z.string().min(1).optional(),
+  limit: z.string().min(1).optional(),
 });
 
 export const PropertyController = {
@@ -57,9 +57,9 @@ export const PropertyController = {
       title,
       location,
       leaseType,
-      priceRange: priceMin || priceMax ? { min: priceMin, max: priceMax } : undefined,
-      page,
-      limit,
+      priceRange: priceMin || priceMax ? { min: Number(priceMin), max: Number(priceMax) } : undefined,
+      page: Number(page),
+      limit: Number(limit),
     };
 
     if (!req.landlordId) throw new HttpError(401, "Missing or invalid Authorization header");
