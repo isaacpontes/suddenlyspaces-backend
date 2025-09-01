@@ -1,7 +1,9 @@
 import { Request } from "express";
 
-declare module "express-serve-static-core" {
-  interface Request {
-    landlordId?: string;
+declare global {
+  namespace Express {
+    interface Request {
+      landlordId?: string;
+    }
   }
 }
