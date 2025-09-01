@@ -4,6 +4,7 @@ declare global {
   namespace Express {
     interface Request {
       landlordId?: string;
+      tenantId?: string;
     }
   }
 }

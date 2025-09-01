@@ -11,7 +11,7 @@ export async function ensureAuth(req: Request, res: Response, next: NextFunction
     const payload = JwtService.verifyAccessToken(token);
     if (!payload) throw new HttpError(401, "Invalid or expired token");
 
-    req.landlordId = payload.sub;
+    req.tenantId = payload.sub;
 
     next();
   } catch (err: any) {
