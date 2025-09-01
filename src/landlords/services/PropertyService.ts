@@ -1,4 +1,5 @@
 import { Property } from "../../models/Property";
+import { Tenant } from "../../models/Tenant";
 import { HttpError } from "../../shared/errors/HttpError";
 
 export const PropertyService = {
@@ -72,7 +73,14 @@ export const PropertyService = {
   async getById(propertyId: string, ownerId: string) {
     const property = await Property.findOne({ _id: propertyId, owner: ownerId }).lean();
     if (!property) throw new HttpError(404, "Property not found");
-    return { property };
+
+    const interestedTenants = await Tenant.find({ interests: propertyId }, { _id: true, name: true }).lean();
+
+    return {
+      ...property,
+      // Mocked risk score inclusion
+      interestedTenants: interestedTenants.map(t => ({ ...t, riskScore: Math.floor(Math.random() * 100) }))
+    };
   },
 
   // Update a property in the database
