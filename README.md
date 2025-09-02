@@ -48,3 +48,14 @@ npm run dev
 
 ## Improvements for a Production-ready Project
 
+There are a lot of things I would improve for a production app. Some of them I mentioned before, like tests and better design with lesser coupling, but there are others that could be mentioned such as:
+
+- **Security:** In a production environment we would need to rethink all security-related topics such as the authentication and authorization strategies, credentials storing, etc. But it's currently not bad either, it's very functional.
+- **Nest.js (maybe):** It could be a good choice on larger teams, as it enforces a "right way" of doing things and has a lot (really, a lot) of great features and tools out-of-the-box. But this comes with the trade-off that the developers must know the framework, otherwise it could decrease productivity.
+- **Docker (maybe):** It's a great tool for development and even for production deployment. I would dockerize the application if I had time.
+- **Business Side:** There are a lot of new features that the app would have as a real production-ready project. To name a few:
+  - richer properties, with media uploads for photos and videos.
+  - the real risk score calculation, based on the user's history maybe.
+  - storing more information about the tenants, like a history maybe.
+  - in-app chat to secure the communication between tenants and landlords.
+- there are way more, these are just from the top of my head (no AI used in this document)
